@@ -1,0 +1,488 @@
+﻿===============================================================================================
+Theme Style
+===============================================================================================
+
+/*
+Theme Name: Twenty Fifteen Child
+Theme URI: http://example.com/twenty-fifteen-child/
+Description: Twenty Fifteen Child Theme
+Author: John Doe
+Author URI: http://example.com
+Template: twentyfifteen
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+Text Domain: twenty-fifteen-child
+*/
+===============================================================================================
+
+
+/**********************************************
+* The LOOP									  *	
+**********************************************/
+Index.php
+
+<?php if ( have_posts() ) : ?>
+	<?php while ( have_posts() ) : the_post(); ?>
+	<article>
+	<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+				
+		<?php the_excerpt(); ?>
+		</article>
+        <p><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"class="button">Read More</a></p>
+		
+	<?php endwhile; ?>
+<?php else: ?>
+	<h2>Can't Find Post</h2>
+	<p>Sorry, we were unable to find the page you requested.</p>
+<?php endif; ?>
+
+
+
+Single.php & Page.php
+
+<?php if ( have_posts() ) : ?>
+	<?php while ( have_posts() ) : the_post(); ?>
+	<article>
+	<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
+				
+		<?php the_content(); ?>
+		</article>
+        <p><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"class="button">Read More</a></p>
+		
+	<?php endwhile; ?>
+<?php else: ?>
+	<h1>Can't Find Post</h1>
+	<p>Sorry, we were unable to find the page you requested.</p>
+<?php endif; ?>
+
+/****************************************************************
+* Put in functions.php											*
+****************************************************************/
+<?php
+//Enqueue Stylesheet and Scripts
+function hallux_scripts() {
+	wp_enqueue_style( 'hallux-style', get_stylesheet_uri() );
+	wp_enqueue_script( 'hallux-jquery', get_template_directory_uri() . '/js/jquery.js');
+	wp_enqueue_script( 'hallux-slider', get_template_directory_uri() . '/js/slider.js');
+	wp_enqueue_script( 'hallux-superfish', get_template_directory_uri() . '/js/superfish.js');
+	wp_enqueue_script( 'hallux-custom', get_template_directory_uri() . '/js/custom.js');
+}
+add_action( 'wp_enqueue_scripts', 'hallux_scripts' );
+
+============================================================
+
+register_sidebar( array(
+'name' => 'Footer Area 1',
+
+                        'id' => 'footer-1',
+
+                        'description' => 'Appears in the footer area',
+
+                        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+
+                        'after_widget' => '</aside>',
+                        
+'before_title' => '<h3 class="widget-title">',
+
+                        'after_title' => '</h3>',
+) );
+
+
+
+register_sidebar( array(
+'name' => 'Footer Area 2',
+
+                        'id' => 'footer-2',
+
+                        'description' => 'Appears in the footer area',
+                        
+'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+                        
+'after_widget' => '</aside>',
+
+                        'before_title' => '<h3 class="widget-title">',
+
+                        'after_title' => '</h3>',
+) );
+
+
+
+register_sidebar( array(
+'name' => 'Footer Area 3',
+
+                        'id' => 'footer-3',
+
+                        'description' => 'Appears in the footer area',
+                        
+'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+                        
+'after_widget' => '</aside>',
+                        
+'before_title' => '<h3 class="widget-title">',
+
+                        'after_title' => '</h3>',
+) );
+
+
+
+register_sidebar( array(
+'name' => 'Footer Area 4',
+                        
+'id' => 'footer-4',
+                        
+'description' => 'Appears in the footer area',
+                        
+'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+
+                        'after_widget' => '</aside>',
+
+                        'before_title' => '<h3 class="widget-title">',
+                        
+'after_title' => '</h3>',
+) );
+=======================================================
+
+<footer>
+
+
+  <div id="footer-1">
+
+	
+  <?php
+	if(is_active_sidebar('footer-1'))
+          {
+
+	    dynamic_sidebar('footer-1');
+	
+          }
+	
+  ?>
+	
+  </div>
+
+	
+ <div id="footer-2">
+
+	
+   <?php if(is_active_sidebar('footer-2'))
+         {
+	
+            dynamic_sidebar('footer-2');
+         }
+	
+    ?>
+	
+    </div>
+
+	
+  <div id="footer-3">
+
+	
+      <?php
+ if(is_active_sidebar('footer-3'))
+        {
+	
+            dynamic_sidebar('footer-3');
+	
+        }
+	
+      ?>
+
+	
+  </div>
+
+	
+   <div id="footer-4">
+
+	
+   <?php if(is_active_sidebar('footer-4'))
+        {
+	
+           dynamic_sidebar('footer-4');
+
+  	}
+	
+    ?>
+
+
+	
+  </div>
+         
+
+</footer>
+=======================================================
+
+Bitm Notes:
+
+<h2><?php the_title(); ?></h2>
+<p><?php the_content(); ?></p>
+<a> hrep="<?php the_permalink(); ?>"afdfsdfsf</a>
+add_theme_support('custom-header');
+
+add_theme_support('post-thumbnails'); eita function a resister korar por jekhane image ta ante chai sekhane ei code dite hosbe
+<?php the_post_thumbnail(); ?>
+
+
+agei function er modde custom post gula bootstrap theke dite hobe tar por Home page ba index a agula likhte hobe
+<?php query_posts(array(
+  'post_type' => 'service_type',
+  'post_per_page' => 3   eita diye bolte hobe koy ta column show korbe....
+)); ?> tarpor loof chalaite hobe chek korar jonno
+<?php 
+ if(have_posts()):while(have_posts()):the_post();
+?>agula bondo korte hobe
+<?php endwhile; endif; ?>
+
+
+===============================================================================================
+Title Tag:
+===============================================================================================
+<title><?php bloginfo('name'); ?><?php wp_title(); ?></title>
+<title> <?php wp_title('', true,''); ?> </title>
+===============================================================================================
+
+
+
+===============================================================================================
+Import CSS:
+===============================================================================================
+<link href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+===============================================================================================
+
+
+
+
+===============================================================================================
+Import JQuery:
+===============================================================================================
+<script src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script>
+===============================================================================================
+
+
+
+
+
+===============================================================================================
+Image path:
+===============================================================================================
+<img src="<?php bloginfo('template_url') ?>/images/slides.jpg">﻿
+===============================================================================================
+
+
+
+
+===============================================================================================
+Header:
+===============================================================================================
+<?php include (TEMPLATEPATH."/header.php');?>)
+<?php get_header(); ?>
+<?php wp_head(); ?>
+===============================================================================================
+
+
+
+
+
+===============================================================================================
+Footer:
+===============================================================================================
+<?php include (TEMPLATEPATH."/footer.php');?>)
+
+<?php get_footer(); ?>
+
+ <?php wp_footer(); ?> 
+===============================================================================================
+
+
+
+
+
+===============================================================================================
+Template Content:
+===============================================================================================
+<?php 
+/*
+Template Name: contact us
+*/
+
+?>
+<?php get_header(); ?>
+
+
+<?php while ( have_posts() ): the_post(); ?>
+		
+
+					<?php the_content(); ?>
+
+			<?php if ( ot_get_option('page-comments') == 'on' ) { comments_template('/comments.php',true); } ?>
+			
+		<?php endwhile; ?>
+		
+<?php get_footer(); ?>
+
+===============================================================================================
+
+
+
+================================================================================================
+Get Slider => Slider name: ltc/slider.php
+================================================================================================
+
+<?php get_template_part('ltc/slider'); ?>
+
+================================================================================================
+
+
+
+===============================================================================================
+Menu Register
+===============================================================================================
+
+function register_my_menus() {
+  register_nav_menus(
+    array(
+      'header-menu' => __( 'Header Menu' ),
+      'extra-menu' => __( 'Extra Menu' )
+     )
+   );
+ }
+ add_action( 'init', 'register_my_menus' );
+
+================================================================================================
+
+ <?php
+     wp_nav_menu( array(
+    'menu'           => 'Primary Menu', // Do not fall back to first non-empty menu.
+    'theme_location' => '__no_such_location',
+ 'menu_class' => 'nav navbar-nav',
+ 'menu_id' => 'menu',
+ 'container' => 'ul',
+ 'container_class' => 'collapse navbar-collapse'
+   
+) );
+===============================================================================================
+
+
+
+
+
+===============================================================================================
+Contact form 7
+===============================================================================================
+<?php echo do_shortcode( '[contact-form-7 id="1234" title="Contact form 1"]' ); ?>
+===============================================================================================
+
+
+
+
+
+===============================================================================================
+n-th folder
+===============================================================================================
+
+<link href="<?php echo get_template_directory_uri(); ?>/landt/csso/stylec619.css?v=1.0" rel="stylesheet" />
+
+===============================================================================================
+
+
+
+
+
+
+===============================================================================================
+Redirect a page
+===============================================================================================
+
+
+<?php /*  
+Template Name: Page Redirect
+*/ 
+
+header('Location: http://www.nameofnewsite.com');
+exit();
+
+?>
+
+===============================================================================================
+
+
+
+===============================================================================================
+Display single product image
+===============================================================================================
+.woocommerce div.product div.images.woocommerce-product-gallery{
+opacity:1 !important;
+}
+
+figure {
+display: block;
+margin-top: 0em;
+margin-bottom: 0em;
+margin-left: 0px;
+margin-right: 0px;
+}
+===============================================================================================
+
+
+// login redirect woocoomerce
+add_filter( 'woocommerce_login_redirect', 'wc_login_redirect' );
+
+function wc_login_redirect( $redirect_to ) {
+	$redirect_to = home_url( '/profile/' );
+	return $redirect_to;
+
+}
+
+//This plugin will take users directly to the home page after logout.
+add_action('wp_logout',function(){
+	if(check_admin_referer('log-out')) {
+		$home_url  = apply_filters("wplr_home_url",home_url( '/' ));
+		wp_redirect( $home_url );
+		exit();
+	}
+});
+
+
+===============================================================================================
+---------------
+===============================================================================================
+-------------------
+===============================================================================================
+
+=> Payment type in WooCommerce Admin Email
+
+------------------------------------------
+
+Paste code in functions.php file of theme.
+
+------------------------------------------
+
+
+add_action('woocommerce_email_after_order_table','add_payment_method_admin_new_order', 15, 2 );  
+
+function add_payment_method_admin_new_order( $order, $is_admin_email ) {  
+    if ( $is_admin_email ) {  
+        echo '<p><strong>Payment Method:</strong> ' . $order->payment_method_title .    
+    '</p>';  
+  }
+}
+
+
+
+===============================================================================================
+Change return shop to custom shop page
+===============================================================================================
+
+/**
+ * Changes the redirect URL for the Return To Shop button in the cart.
+ *
+ * @return string
+ */
+function wc_empty_cart_redirect_url() {
+  return 'https://www.techshelpme.com/shop/';
+}
+add_filter( 'woocommerce_return_to_shop_redirect', 'wc_empty_cart_redirect_url' );
+===============================================================================================
