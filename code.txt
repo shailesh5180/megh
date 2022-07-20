@@ -13,9 +13,9 @@ add_action( 'init', function () {
 } );
 
 ////////////{/////{{{{
-[19/07, 12:51 am] Shailesh Parikh: https://wppb.me/
-[19/07, 1:11 am] Shailesh Parikh: https://sufyan.in/code-generator/
-[19/07, 1:57 am] Shailesh Parikh: https://www.wp-hasty.com/
+https://wppb.me/
+https://sufyan.in/code-generator/
+https://www.wp-hasty.com/
 https://generatewp.com/
 https://www.exygy.com/blog
 https://versionpress.com/
@@ -28,8 +28,8 @@ http://wpsettingsapi.jeroensormani.com/
 https://jeremyhixon.com/tool/wordpress-option-page-generator/
 https://github.com/understrap/understrap
 https://underscores.me/
-[19/07, 9:25 am] Shailesh Parikh: Custom post type shortcode
-[19/07, 9:25 am] Shailesh Parikh:
+Custom post type shortcode
+
  // >> Create Shortcode to Display Movies Post Types
   
 function diwp_create_shortcode_movies_post_type(){
